@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars Factions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: black;
+      color: #FFE81F;
+      font-family: 'Orbitron', sans-serif;
+      padding: 20px;
+      overflow-x: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 4em;
+      margin-bottom: 40px;
+    }
+
+    /* Grid layout for factions */
+    .faction-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+
+    /* Faction card style */
+    .faction-card {
+      background: rgba(255, 232, 31, 0.05);
+      border: 2px solid #FFE81F;
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.3s, background 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faction-card:hover {
+      transform: scale(1.05);
+      background: rgba(255, 232, 31, 0.15);
+    }
+
+    .faction-card img {
+      width: 100px;
+      margin-bottom: 10px;
+      transition: transform 0.5s;
+    }
+
+    .faction-card:hover img {
+      transform: rotate(-10deg);
+    }
+
+    .faction-card h2 {
+      margin: 10px 0 5px 0;
+      font-size: 1.5em;
+    }
+
+    .faction-card p {
+      font-size: 0.9em;
+    }
+
+    /* Floating stars in the background */
+    body::before {
+      content: '';
+      position: fixed;
+      width: 200%;
+      height: 200%;
+      background: transparent url('https://content.miros.services/products/full/08a9e613-efb1-47f7-9994-4c569556c6e9') repeat;
+      animation: stars 60s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes stars {
+      from { background-position: 0 0; }
+      to { background-position: -1000px 1000px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Star Wars Factions</h1>
+  <div class="faction-container">
+    <div class="faction-card">
+      <img src="https://static.wikia.nocookie.net/empireatwar/images/c/ca/Imperial_Emblem_by_ConradChaos.png/revision/latest?cb=20150125062618" alt="Galactic Empire">
+      <h2>Galactic Empire</h2>
+      <p>The oppressive regime that rules the galaxy with fear.</p>
+    </div>
+
+    <div class="faction-card">
+      <img src="https://thumbs.dreamstime.com/b/star-wars-rebel-alliance-symbol-flag-theme-editorial-use-128058530.jpg" alt="Rebel Alliance">
+      <h2>Rebel Alliance</h2>
+      <p>Freedom fighters opposing the tyranny of the Empire.</p>
+    </div>
+
+    <div class="faction-card">
+      <img src="https://static.wikia.nocookie.net/star-wars-canon-extended/images/b/bb/Separatists.jpg/revision/latest?cb=20170417230018" alt="Separatists">
+      <h2>Separatists</h2>
+      <p>The Confederacy of Independent Systems during the Clone Wars.</p>
+    </div>
+
+    <div class="faction-card">
+      <img src="https://static.wikia.nocookie.net/starwars/images/3/33/NR_Seal.svg/revision/latest?cb=20080307235709" alt="New Republic">
+      <h2>New Republic</h2>
+      <p>The government formed after the fall of the Galactic Empire.</p>
+    </div>
+    <div class="faction-card">
+      <img src="https://static.wikia.nocookie.net/kylarsroleplay/images/3/3a/%22All_Stars_Burn_As_One%22_-_Galactic_Republic_Anthem/revision/latest/scale-to-width-down/340?cb=20180102082435" alt="Galactic Republic">
+      <h2>Galactic Republic</h2>
+      <p>The galactic government before the Clone Wars happened.</p>
+    </div>
+    
+    <!-- Add more factions here -->
+  </div>
+</body>
+</html>
