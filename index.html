@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello Star Wars</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: black;
+      color: #FFE81F; /* Star Wars yellow */
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 5em;
+      text-transform: uppercase;
+      text-align: center;
+      animation: crawl 10s linear forwards;
+    }
+
+    /* Opening crawl animation */
+    @keyframes crawl {
+      0% {
+        transform: translateY(100%);
+      }
+      100% {
+        transform: translateY(-100%);
+      }
+    }
+
+    /* Starry background */
+    body::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: transparent url('https://static.wikia.nocookie.net/starwars/images/c/cc/Star-wars-logo-new-tall.jpg/revision/latest/scale-to-width-down/1200?cb=20190313021755') repeat;
+      animation: stars 50s linear infinite;
+      z-index: -1;
+    }
+
+    @keyframes stars {
+      from { background-position: 0 0; }
+      to { background-position: -1000px 1000px; }
+    }
+
+    /* Button styles */
+    .star-wars-button {
+      display: inline-block;
+      margin-top: 50px;
+      padding: 15px 30px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.5em;
+      color: #FFE81F;
+      text-decoration: none;
+      border: 2px solid #FFE81F;
+      border-radius: 10px;
+      opacity: 0;
+      transition: transform 0.3s, background 0.3s, opacity 1s;
+      z-index: 1;
+    }
+
+    .star-wars-button:hover {
+      background: rgba(255, 232, 31, 0.2);
+      transform: scale(1.1);
+    }
+
+    .show-button {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello there</h1>
+  <a href="fractions.html" class="star-wars-button" id="enterButton">Enter the Galaxy →</a>
+
+  <script>
+    // Show the button after 10 seconds (crawl duration)
+    setTimeout(() => {
+      document.getElementById('enterButton').classList.add('show-button');
+    }, 10000);
+
+    // Optional: auto-redirect after 15 seconds if they don't click
+    setTimeout(() => {
+      window.location.href = "fractions.html";
+    }, 15000);
+  </script>
+</body>
+</html>
