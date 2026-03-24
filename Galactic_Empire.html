@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Galactic Empire Naval Timeline</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0b0f1a;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 30px;
+      margin-bottom: 50px;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    /* vertical line */
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: #00bfff;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* entry container */
+    .entry {
+      padding: 20px 40px;
+      position: relative;
+      width: 50%;
+      box-sizing: border-box;
+    }
+
+    /* left side */
+    .entry.left {
+      left: 0;
+      text-align: right;
+    }
+
+    /* right side */
+    .entry.right {
+      left: 50%;
+      text-align: left;
+    }
+
+    /* circle */
+    .entry::before {
+      content: '';
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: black;
+      border: 3px solid #00bfff;
+      top: 25px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .entry.left::before {
+      right: -8px;
+    }
+
+    .entry.right::before {
+      left: -8px;
+    }
+
+    /* content box */
+    .content {
+      background: #111827;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,191,255,0.3);
+      display: inline-block;
+      max-width: 90%;
+      cursor: pointer;
+    }
+
+    /* hover glow effect */
+    .content:hover {
+      box-shadow: 0 0 20px rgba(0,191,255,0.8);
+    }
+
+    /* hidden description */
+    .description {
+      display: none;
+      margin-top: 10px;
+      background: #1f2937;
+      padding: 10px;
+      border-radius: 6px;
+      font-size: 0.9em;
+      line-height: 1.4em;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Galactic Empire Naval Timeline</h1>
+
+<div class="timeline" id="timeline"></div>
+
+<script>
+  const ships = [
+    {
+      year: -19,
+      name: "Venator-class Star Destroyer",
+      type: "Carrier",
+      era: "Late Republic",
+      description: "The Venator-class was the backbone of the Republic Navy during the Clone Wars, serving as both carrier and battleship."
+    },
+    {
+      year: -5,
+      name: "Imperial I-class Star Destroyer",
+      type: "Star Destroyer",
+      era: "Empire",
+      description: "The Imperial I-class Star Destroyer is the most common warship of the Galactic Empire, intimidating opponents with its firepower and size."
+    },
+    {
+      year: 0,
+      name: "Executor-class Super Star Destroyer",
+      type: "Super Star Destroyer",
+      era: "Empire",
+      description: "Darth Vader's flagship, the Executor-class, is massive and capable of crushing fleets with its superior firepower."
+    },
+    {
+      year: 3,
+      name: "Victory-class Star Destroyer",
+      type: "Star Destroyer",
+      era: "Empire",
+      description: "The Victory-class Star Destroyer is a versatile ship often used for patrols and as a support vessel for larger fleets."
+    },
+    {
+      year: 4,
+      name: "Arquitens-class Light Cruiser",
+      type: "Light Cruiser",
+      era: "Empire",
+      description: "The Arquitens-class serves as a command ship and scout, smaller than a Star Destroyer but essential for tactical coordination."
+    }
+  ];
+
+  function formatYear(year) {
+    return year < 0 ? `${-year} BBY` : `${year} ABY`;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const timeline = document.getElementById("timeline");
+    ships.sort((a,b) => a.year - b.year);
+    ships.forEach((ship, index) => {
+      const entry = document.createElement("div");
+      entry.className = "entry " + (index % 2 === 0 ? "left" : "right");
+
+      entry.innerHTML = `
+        <div class="content">
+          <h3>${formatYear(ship.year)}</h3>
+          <strong class="ship-name">${ship.name}</strong>
+          <p>${ship.type} | ${ship.era}</p>
+          <div class="description">${ship.description}</div>
+        </div>
+      `;
+
+      timeline.appendChild(entry);
+
+      // Add click event to toggle description
+      const contentDiv = entry.querySelector(".content");
+      const descriptionDiv = entry.querySelector(".description");
+      const shipName = entry.querySelector(".ship-name");
+
+      shipName.addEventListener("click", () => {
+        descriptionDiv.style.display = descriptionDiv.style.display === "block" ? "none" : "block";
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
